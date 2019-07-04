@@ -4,5 +4,32 @@
 }
 .content {
     border: 1px solid black;
+    height: 90vh;
+}
+.box {
+    border: 1px solid black;
+    width: 95%;
+    margin: auto;
     height: 80vh;
+    background-color: #f2f2f2;
+}
+.numOfEmployees {
+    width: 95%;
+    margin: auto;
+}
+.row {
+    width: 95%;
+    margin: auto;
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.row input {
+    border-radius: 20px;
+    width: 93%;
+}
+.btn{
+    width: 90px;
+    position: absolute;
+    right: 55px;
 }

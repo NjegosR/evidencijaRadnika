@@ -1,7 +1,12 @@
-<div *ngFor="let employee of employees">
-    <p>{{employee.firstName}} {{employee.lastName}} 
-        <app-button title="obrisi" (buttonPressed)="buttonClicked('obrisi', employee.id)"></app-button>
-        <app-button title="izmjeni" (buttonPressed)="buttonClicked('izmjeni', employee.id)"></app-button>
-    </p>
-</div>
+<ng-container *ngFor="let employee of employees">
+    <table>
+    <tr>
+        <td>{{employee.firstName}} {{employee.lastName}}</td>
+        <td>
+                <app-button title="obrisi" (buttonPressed)="buttonClicked('obrisi', employee.id)"></app-button>
+                <app-button title="izmjeni" (buttonPressed)="buttonClicked('izmjeni', employee.id)"></app-button>
+        </td>
+    </tr>
+    </table>
+</ng-container>
 

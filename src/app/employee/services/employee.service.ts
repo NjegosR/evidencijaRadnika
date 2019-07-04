@@ -15,5 +15,11 @@ export class EmployeeService {
   getEmployees(): Observable<IEmployee[]> {
     return this.http.get<IEmployee[]>(environment.getEmployeesURL);
   }
+  addNewEmployee(body): Observable<IEmployee> {
+    console.log('#############');
+    console.log(body);
+    console.log('#############');
+    return this.http.post<IEmployee>(environment.addEmployeeURL, body);
+  }
 
 }

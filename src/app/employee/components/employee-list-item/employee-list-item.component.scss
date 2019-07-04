@@ -1,8 +1,17 @@
-p{
-    padding: 10px;
+tr{
+    width: 1000px;
     cursor: pointer;
-    font-size: 120%;
 }
-p:hover{
+
+td {
+    text-align: left;
+    padding: 8px;
+  }
+  tr:hover{
     background-color: lightgray;
 }
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 120%;
+  }
