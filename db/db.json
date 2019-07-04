@@ -6,11 +6,6 @@
       "lastName": "Eschweiler"
     },
     {
-      "id": 2,
-      "firstName": "Njegos",
-      "lastName": "Rajcevic"
-    },
-    {
       "id": 3,
       "firstName": "Janko",
       "lastName": "Jankovic"
@@ -36,16 +31,6 @@
       "id": 7
     },
     {
-      "firstName": "wwwww",
-      "lastName": "wwwwwwwwwwwwwww",
-      "id": 8
-    },
-    {
-      "firstName": "sdfsds",
-      "lastName": "sfdffffffffffff",
-      "id": 9
-    },
-    {
       "firstName": "klsajkdljdl",
       "lastName": "klasjkldajld",
       "id": 10
@@ -56,14 +41,14 @@
       "id": 11
     },
     {
-      "firstName": "Mak",
-      "lastName": "Makovic",
-      "id": 12
-    },
-    {
       "firstName": "Petar",
       "lastName": "Rajcevic",
       "id": 13
+    },
+    {
+      "firstName": "Njegos",
+      "lastName": "Rajcevic",
+      "id": 14
     }
   ]
 }

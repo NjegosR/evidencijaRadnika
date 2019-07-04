@@ -11,11 +11,12 @@ import { IButton } from '../../models/button.clicked';
 export class EmployeeListItemComponent {
   @Input() employees: IEmployee[];
   @Output() btnClicked = new EventEmitter<IButton>();
+  @Output() deleteEmpl = new EventEmitter<boolean>();
   buttonClicked(Type, Id) {
     const btn = {
       id: Id,
       type: Type
-    }
+    };
     this.btnClicked.next(btn);
   }
 }

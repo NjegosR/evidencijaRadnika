@@ -4,7 +4,7 @@
         <td>{{employee.firstName}} {{employee.lastName}}</td>
         <td>
                 <app-button title="obrisi" (buttonPressed)="buttonClicked('obrisi', employee.id)"></app-button>
-                <app-button title="izmjeni" (buttonPressed)="buttonClicked('izmjeni', employee.id)"></app-button>
+                <app-button title="izmjeni" (deleteEmployee)="deleteEmpl.next($event)" (buttonPressed)="buttonClicked('izmjeni', employee.id)" ></app-button>
         </td>
     </tr>
     </table>

@@ -6,5 +6,11 @@
     <button type="button" class="btn btn-primary float-right" (click)="buttonPressed.emit(title)">{{title | titlecase}}</button>
 </ng-template>
 <ng-template #delete>
-    <button type="button" class="btn btn-danger float-right" (click)="buttonPressed.emit(title)">{{title | titlecase}}</button>
+    <button type="button" class="btn btn-danger float-right" (click)="buttonPressed.emit(title)" (click)="ngxSmartModalService.getModal('myModal').open()">{{title | titlecase}}</button>
 </ng-template>
+
+<ngx-smart-modal #myModal identifier="myModal">
+    <h6>Da li zelite da izbrisete ovog radnika sa spiska radnika?</h6>
+    <button class="btn btn-danger" (click)="deleteEmployee.emit('true')">Yes</button>
+    <button class="btn btn-primary float-right" (click)="myModal.close()">No</button>
+</ngx-smart-modal>

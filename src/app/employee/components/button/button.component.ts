@@ -1,4 +1,6 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy  } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { NgxSmartModalService } from 'ngx-smart-modal';
+
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -9,5 +11,7 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy  } from
 export class ButtonComponent {
   @Input() title: string;
   @Output() buttonPressed = new EventEmitter<string>();
+  @Output() deleteEmployee = new EventEmitter<boolean>();
+  constructor(public ngxSmartModalService: NgxSmartModalService) { }
 
 }
