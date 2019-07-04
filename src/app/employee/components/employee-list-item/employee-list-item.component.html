@@ -1,3 +1,7 @@
 <div *ngFor="let employee of employees">
-    <p>{{employee.firstName}} {{employee.lastName}}</p>
+    <p>{{employee.firstName}} {{employee.lastName}} 
+        <app-button title="obrisi" (buttonPressed)="buttonClicked('obrisi', employee.id)"></app-button>
+        <app-button title="izmjeni" (buttonPressed)="buttonClicked('izmjeni', employee.id)"></app-button>
+    </p>
 </div>
+

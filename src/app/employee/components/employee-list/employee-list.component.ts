@@ -18,5 +18,11 @@ export class EmployeeListComponent implements OnInit {
   ngOnInit() {
     this.employees$ = this.employeesService.getEmployees();
   }
+  editOrDelete(ev) {
+    console.log(1111111);
+    console.log(ev);
+    console.log(1111111);
+
+  }
 
 }

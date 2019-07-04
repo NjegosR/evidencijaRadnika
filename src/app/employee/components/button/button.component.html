@@ -1,0 +1,10 @@
+<ng-container
+  *ngIf="title != 'obrisi'; then edit; else delete">
+</ng-container>
+
+<ng-template #edit>
+    <button type="button" class="btn btn-primary float-right" (click)="buttonPressed.emit(title)">{{title | titlecase}}</button>
+</ng-template>
+<ng-template #delete>
+    <button type="button" class="btn btn-danger float-right" (click)="buttonPressed.emit(title)">{{title | titlecase}}</button>
+</ng-template>

@@ -1,5 +1,6 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { IEmployee } from '../../models/employee.model';
+import { IButton } from '../../models/button.clicked';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -9,5 +10,12 @@ import { IEmployee } from '../../models/employee.model';
 })
 export class EmployeeListItemComponent {
   @Input() employees: IEmployee[];
-
+  @Output() btnClicked = new EventEmitter<IButton>();
+  buttonClicked(Type, Id) {
+    const btn = {
+      id: Id,
+      type: Type
+    }
+    this.btnClicked.next(btn);
+  }
 }

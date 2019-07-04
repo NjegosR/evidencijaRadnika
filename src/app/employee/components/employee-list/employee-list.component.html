@@ -8,7 +8,9 @@
         </li>
       </ul>
       <div class="content">
-        <app-employee-list-item [employees]="employees$ | async"></app-employee-list-item>
+          <button type="button" class="btn btn-primary">Dodaj</button>
+
+        <app-employee-list-item [employees]="employees$ | async" (btnClicked)="editOrDelete($event)"></app-employee-list-item>
       </div>
       <p>Ukupno zaposlenih: {{(employees$ | async)?.length}}</p>
 </div>
