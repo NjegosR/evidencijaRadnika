@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewChild, Renderer2 } from '@angular/core';
 import { IEmployee } from '../../models/employee.model';
 import { IButton } from '../../models/button.clicked';
 
@@ -12,11 +12,25 @@ export class EmployeeListItemComponent {
   @Input() employees: IEmployee[];
   @Output() btnClicked = new EventEmitter<IButton>();
   @Output() deleteEmpl = new EventEmitter<boolean>();
-  buttonClicked(Type, Id) {
+  @ViewChild('input', {static: false}) input: HTMLElement;
+
+  editTable = false;
+  rowId: number;
+  value: string;
+  color = 'red';
+  constructor(private renderer: Renderer2) { }
+  buttonClicked(Type, Id, name) {
+    this.rowId = Id;
     const btn = {
       id: Id,
-      type: Type
+      type: Type,
+      employee: name
     };
     this.btnClicked.next(btn);
+    if (Type === 'Izmjeni') {
+      this.editTable = true;
+    } else {
+      this.editTable = false;
+    }
   }
 }

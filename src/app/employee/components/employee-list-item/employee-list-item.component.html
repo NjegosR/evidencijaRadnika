@@ -1,10 +1,11 @@
 <ng-container *ngFor="let employee of employees">
     <table>
     <tr>
-        <td>{{employee.firstName}} {{employee.lastName}}</td>
+        <td *ngIf="employee.id === rowId"><input [ngStyle]="!editTable?{'border': 'none', 'background': 'none'} : {'visibility': 'visible'}" #input type="text" [(ngModel)]="employee.name"></td>
+        <td *ngIf="employee.id !== rowId">{{employee.name}}</td>
         <td>
                 <app-button title="obrisi" (buttonPressed)="buttonClicked('obrisi', employee.id)"></app-button>
-                <app-button title="izmjeni" (deleteEmployee)="deleteEmpl.next($event)" (buttonPressed)="buttonClicked('izmjeni', employee.id)" ></app-button>
+                <app-button title="izmjeni" (deleteEmployee)="deleteEmpl.next($event)" (buttonPressed)="buttonClicked($event, employee.id, employee.name)" ></app-button>
         </td>
     </tr>
     </table>

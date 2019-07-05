@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
-import { empty, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { EmployeeService } from '../../services/employee.service';
@@ -39,8 +39,7 @@ export class AddNewEmployeeComponent implements OnInit, OnDestroy {
   }
   submit(form) {
     const body = {
-      firstName: form.value.firstName,
-      lastName: form.value.lastName
+      name: `${form.value.firstName} ${form.value.lastName}`
     };
     this.subscription = this.employeesService.addNewEmployee(body).subscribe((employee) => {
       if (employee) {

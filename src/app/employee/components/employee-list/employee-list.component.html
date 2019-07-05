@@ -14,7 +14,7 @@
           </div>
           <div class="box">
                   
-        <app-employee-list-item [employees]="(employees$ | async) | search:searchTerm" (deleteEmpl)="deleteEmpl($event)" (btnClicked)="editOrDelete($event)"></app-employee-list-item>
+        <app-employee-list-item [employees]="(employees$ | async) | search:searchTerm" (deleteEmpl)="editEmpl($event)" (btnClicked)="getEmployee($event)"></app-employee-list-item>
                 
       </div>
         <p class="numOfEmployees">Ukupno zaposlenih: {{(employees$ | async)?.length}}</p>

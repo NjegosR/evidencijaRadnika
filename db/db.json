@@ -1,54 +1,12 @@
 {
   "employees": [
     {
-      "id": 1,
-      "firstName": "Sebastian",
-      "lastName": "Eschweiler"
+      "name": "Sebastian Eschweiler 1",
+      "id": 1
     },
     {
-      "id": 3,
-      "firstName": "Janko",
-      "lastName": "Jankovic"
-    },
-    {
-      "id": 4,
-      "firstName": "Darko",
-      "lastName": "Drasovic"
-    },
-    {
-      "firstName": "Uki",
-      "lastName": "Ukic",
-      "id": 5
-    },
-    {
-      "firstName": "uros",
-      "lastName": "urosevic",
-      "id": 6
-    },
-    {
-      "firstName": "sadfghjkl;",
-      "lastName": "sdfghjkl",
-      "id": 7
-    },
-    {
-      "firstName": "klsajkdljdl",
-      "lastName": "klasjkldajld",
-      "id": 10
-    },
-    {
-      "firstName": "Kisa",
-      "lastName": "Padaa",
-      "id": 11
-    },
-    {
-      "firstName": "Petar",
-      "lastName": "Rajcevic",
-      "id": 13
-    },
-    {
-      "firstName": "Njegos",
-      "lastName": "Rajcevic",
-      "id": 14
+      "name": "Njegos rajcevic",
+      "id": 2
     }
   ]
 }

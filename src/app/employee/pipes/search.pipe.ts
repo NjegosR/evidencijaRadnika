@@ -12,10 +12,9 @@ export class SearchPipe implements PipeTransform {
         return employees;
       } else if (search !== '') {
         const newArr = [];
-        employees.filter((x) => {
-          // tslint:disable-next-line:max-line-length
-          if (x.firstName.toLocaleLowerCase().match(search.toLocaleLowerCase()) || x.lastName.toLocaleLowerCase().match(search.toLocaleLowerCase())) {
-            newArr.push(x);
+        employees.filter((item) => {
+          if (item.name.toLocaleLowerCase().match(search.toLocaleLowerCase())) {
+            newArr.push(item);
           }
         });
         return newArr;
