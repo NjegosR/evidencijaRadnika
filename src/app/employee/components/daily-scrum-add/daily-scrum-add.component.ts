@@ -1,34 +1,31 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
-import * as $ from 'jquery';
 import { EmployeeService } from '../../services/employee.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { IEmployee } from '../../models/employee.model';
-import { MyValidators } from '../../validators/my-validators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-daily-scrum-add',
   templateUrl: './daily-scrum-add.component.html',
   styleUrls: ['./daily-scrum-add.component.scss']
 })
-export class DailyScrumAddComponent implements OnInit {
+export class DailyScrumAddComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   isNameOnEmployeeList = false;
   employees: Observable<IEmployee[]>;
-  valid = new MyValidators(this.employees);
   date: Date = new Date();
   time = { hour: this.date.getHours(), minute: this.date.getMinutes() };
-
-
-
+  subcription: Subscription;
 
   constructor(private fb: FormBuilder,
-              private employeeService: EmployeeService
+              private employeeService: EmployeeService,
+              private router: Router
   ) {
     this.form = fb.group({
       name: [null, [Validators.required, Validators.minLength(8)]],
       arrivingTime: [null, Validators.required],
-      employeeArrivedOnTime: [{value: null, disabled: true}, Validators.required]
+      employeeArrivedOnTime: [null, Validators.required],
     });
   }
   get name() {
@@ -53,7 +50,7 @@ export class DailyScrumAddComponent implements OnInit {
   checkName() {
     const name = this.form.get('name').value;
     if (name !== null && name.length > 7) {
-    this.employees.subscribe((item) => {
+    this.subcription = this.employees.subscribe((item) => {
       item.map((user) => {
         if (user.name === name) {
          this.isNameOnEmployeeList = true;
@@ -62,6 +59,23 @@ export class DailyScrumAddComponent implements OnInit {
     });
     }
     this.isNameOnEmployeeList = false;
+  }
+  submit(form) {
+    const body = {
+      name: form.value.name,
+      time: form.value.arrivingTime,
+      onTime: form.value.employeeArrivedOnTime
+    };
+    this.employeeService.addNewEmployeeOnDailyScrumList(body).subscribe((item) => {
+      if (item) {
+        this.router.navigateByUrl('daily-scrum');
+      }
+    });
+  }
+  ngOnDestroy() {
+    if (this.subcription) {
+       this.subcription.unsubscribe();
+    }
   }
 }
 

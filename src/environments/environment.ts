@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  employeeURL: 'http://localhost:3000/employees'
+  employeeURL: 'http://localhost:3000/employees',
+  dailyScrumURL: 'http://localhost:3000/daily-scrum'
 };
 
 /*

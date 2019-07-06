@@ -1,0 +1,34 @@
+<div class="modal-header">
+        <h4 *ngIf="editOrDelete === 'edit'">Izmjeni</h4>
+        <h4 *ngIf="editOrDelete === 'delete'">Izbrisi</h4>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form *ngIf="editOrDelete === 'edit'">
+
+              <div class="form-group">
+                  <label>Ime uposlenika</label>
+                  <input [(ngModel)]="item.name" name="name" type="text" class="form-control">
+              </div>
+              <div class="form-group" class="myClass">
+                  <label>Vrijeme dolaska</label>
+                  <ngb-timepicker [(ngModel)]="item.time" name="time"></ngb-timepicker>   
+              </div>
+              <div class="form-group myClass1">
+                  <label>Stigao na vrijeme</label>
+                  <input type="text" [(ngModel)]="item.onTime" name="onTime" class="form-control"> 
+              </div>
+              <br>
+              <button class="btn btn-success form-control" type="submit" (click)="submit(item.id, 'edit')">Snimi</button>
+          </form>
+          <form *ngIf="editOrDelete === 'delete'">
+            <h4>Da li zelite da izbrisete ovog radnika?</h4>
+            <button class="btn btn-danger float-right" (click)="submit(item.id, 'delete')">Da</button>
+            <button class="btn btn-primary" (click)="activeModal.close()">Ne</button>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Zatvori</button>
+      </div>

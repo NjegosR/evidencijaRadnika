@@ -5,8 +5,28 @@
       "id": 1
     },
     {
-      "name": "Njegos rajcevic",
+      "name": "Njegos Rajcevic",
       "id": 2
+    },
+    {
+      "name": "Marko Markovic",
+      "id": 3
+    },
+    {
+      "name": "Janko Janovic",
+      "id": 4
+    }
+  ],
+  "daily-scrum": [
+    {
+      "id": 2,
+      "name": "Marko Markovic",
+      "time": {
+        "hour": 12,
+        "minute": 46,
+        "second": 0
+      },
+      "onTime": "NE"
     }
   ]
 }

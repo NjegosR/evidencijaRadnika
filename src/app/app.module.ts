@@ -5,6 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EmployeeModule } from './employee/employee.module';
 import { HttpClientModule } from '@angular/common/http';
+import { EditDeleteModalComponent } from './employee/components/edit-delete-modal/edit-delete-modal.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { EmployeeEffects } from './store/employee.effects';
+import { employeeReducer } from './store/employee.reducers';
 
 @NgModule({
   declarations: [
@@ -15,8 +21,18 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     EmployeeModule,
     HttpClientModule,
+    StoreModule.forRoot({
+      employee: employeeReducer
+    }),
+    StoreDevtoolsModule.instrument({name: 'Evidencija radnika'}),
+    EffectsModule.forRoot([
+      EmployeeEffects
+    ])
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    EditDeleteModalComponent
+  ]
 })
 export class AppModule { }

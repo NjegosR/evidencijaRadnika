@@ -3,6 +3,9 @@ import { Observable, from, Subscription } from 'rxjs';
 import { IEmployee } from '../../models/employee.model';
 import { EmployeeService } from '../../services/employee.service';
 import { IButton } from '../../models/button.clicked';
+import { Store } from '@ngrx/store';
+import { IAppState } from 'src/app/app.state';
+import * as employeeActions from '../../../store/employee.actions';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.Default,
@@ -17,10 +20,13 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   searchTerm: string;
   subscription: Subscription;
 
-  constructor(private employeesService: EmployeeService) { }
+  constructor(private employeesService: EmployeeService, private store: Store<IAppState>) { }
 
   ngOnInit() {
     this.getEmployees();
+    this.store.dispatch({
+      type: employeeActions.GET_EMPLOYEES
+    });
   }
   editEmpl(ev) {
     if (this.buttonClicked.type === 'Snimi') {

@@ -13,6 +13,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { SearchPipe } from './pipes/search.pipe';
 import { DailyScrumComponent } from './components/daily-scrum/daily-scrum.component';
 import { DailyScrumAddComponent } from './components/daily-scrum-add/daily-scrum-add.component';
+import { EditDeleteModalComponent } from './components/edit-delete-modal/edit-delete-modal.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { DailyScrumAddComponent } from './components/daily-scrum-add/daily-scrum
     SearchPipe,
     DailyScrumComponent,
     DailyScrumAddComponent,
+    EditDeleteModalComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +38,7 @@ import { DailyScrumAddComponent } from './components/daily-scrum-add/daily-scrum
   ],
   exports: [
     EmployeeListComponent,
+    EditDeleteModalComponent
   ]
 })
 export class EmployeeModule { }

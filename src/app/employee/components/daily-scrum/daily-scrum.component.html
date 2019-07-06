@@ -5,18 +5,37 @@
     <table class="table table-bordered">
             <thead>
               <tr>
-                <th scope="col"></th>
-                <th scope="col">Ime uposlenika</th>
-                <th scope="col">Vrijeme dolaska</th>
-                <th scope="col">Stigao na vrijeme</th>
+                <th scope="col" class="text-center"></th>
+                <th scope="col" class="text-center">Ime uposlenika</th>
+                <th scope="col" class="text-center">Vrijeme dolaska</th>
+                <th scope="col" class="text-center">Stigao na vrijeme</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Njegos Rajcevic</td>
-                <td>9:00</td>
-                <td>Da</td>
-              </tr>
+              <ng-container *ngFor="let item of (dailyScrumItems$ | async)">
+                  <tr>
+                      <th scope="row" class="text-center"><i class="far fa-edit" (click)="open(item, 'edit')"></i><i class="fas fa-user-times" (click)="open(item, 'delete')"></i></th>
+                      <td class="text-center">{{item?.name}}</td>
+                      <td class="text-center">{{item?.time.hour}}:{{item?.time.minute}}</td>
+                      <td class="text-center">{{item?.onTime}}</td>
+                    </tr>
+              </ng-container>
             </tbody>
           </table>
+
+          <ng-template #content let-modal>
+              <div class="modal-header">
+                  <h4 class="modal-title">Hi there!</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Hello, {{name}}!</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+                </div>
+            </ng-template>
+            
+            <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->
