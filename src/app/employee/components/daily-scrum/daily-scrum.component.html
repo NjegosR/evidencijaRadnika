@@ -12,7 +12,7 @@
               </tr>
             </thead>
             <tbody>
-              <ng-container *ngFor="let item of (dailyScrumItems$ | async)">
+              <ng-container *ngFor="let item of (dailyScrumItems$ | async) | search:searchTerm">
                   <tr>
                       <th scope="row" class="text-center"><i class="far fa-edit" (click)="open(item, 'edit')"></i><i class="fas fa-user-times" (click)="open(item, 'delete')"></i></th>
                       <td class="text-center">{{item?.name}}</td>
