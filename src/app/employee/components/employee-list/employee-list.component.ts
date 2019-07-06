@@ -3,9 +3,10 @@ import { Observable, from, Subscription } from 'rxjs';
 import { IEmployee } from '../../models/employee.model';
 import { EmployeeService } from '../../services/employee.service';
 import { IButton } from '../../models/button.clicked';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { IAppState } from 'src/app/app.state';
-import * as employeeActions from '../../../store/employee.actions';
+import * as employeeActions from '../../../store/employees/employee.actions';
+import { pluck } from 'rxjs/operators';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.Default,
@@ -23,10 +24,10 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   constructor(private employeesService: EmployeeService, private store: Store<IAppState>) { }
 
   ngOnInit() {
-    this.getEmployees();
     this.store.dispatch({
       type: employeeActions.GET_EMPLOYEES
     });
+    this.employees$ = this.store.pipe(select('employee'), pluck('employees'));
   }
   editEmpl(ev) {
     if (this.buttonClicked.type === 'Snimi') {
@@ -39,8 +40,11 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
         }
       });
     } else if (this.buttonClicked.type === 'obrisi' && ev.delete) {
-      this.employeesService.deleteEmployee(this.buttonClicked.id).subscribe((x) => {
-        this.getEmployees();
+      this.store.dispatch({
+        type: employeeActions.DELETE_EMPLOYEE,
+        payload: {
+          id: this.buttonClicked.id
+        }
       });
     }
   }
@@ -48,7 +52,9 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     this.buttonClicked = ev;
   }
   getEmployees() {
-    this.employees$ = this.employeesService.getEmployees();
+    this.store.dispatch({
+      type: employeeActions.GET_EMPLOYEES
+    });
   }
   ngOnDestroy() {
     if (this.subscription) {

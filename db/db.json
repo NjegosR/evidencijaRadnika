@@ -1,20 +1,8 @@
 {
   "employees": [
     {
-      "name": "Sebastian Eschweiler 1",
-      "id": 1
-    },
-    {
       "name": "Njegos Rajcevic",
       "id": 2
-    },
-    {
-      "name": "Marko Markovic",
-      "id": 3
-    },
-    {
-      "name": "Janko Janovic",
-      "id": 4
     }
   ],
   "daily-scrum": [
@@ -23,7 +11,7 @@
       "name": "Marko Markovic",
       "time": {
         "hour": 12,
-        "minute": 46,
+        "minute": 45,
         "second": 0
       },
       "onTime": "NE"

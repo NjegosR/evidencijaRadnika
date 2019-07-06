@@ -2,8 +2,12 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IDailyScrum } from '../../models/daily-scrum.model';
 import { EmployeeService } from '../../services/employee.service';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditDeleteModalComponent } from '../edit-delete-modal/edit-delete-modal.component';
+import { Store, select } from '@ngrx/store';
+import { IAppState } from 'src/app/app.state';
+import * as employeeActions from '../../../store/employees/employee.actions';
+import { pluck } from 'rxjs/operators';
 
 
 @Component({
@@ -18,24 +22,36 @@ export class DailyScrumComponent implements OnInit {
 
 
   constructor(private employeeService: EmployeeService,
-              private modalService: NgbModal) { }
+              private modalService: NgbModal,
+              private store: Store<IAppState>
+              ) { }
 
   ngOnInit() {
-    this.getDailyScrumItems();
+    this.store.dispatch({
+      type: employeeActions.GET_DAILY_SCRUM_ITEM
+    });
+    this.dailyScrumItems$ = this.store.pipe(select('employee'), pluck('dailySrums'));
   }
   open(item, op) {
     const modalRef = this.modalService.open(EditDeleteModalComponent);
     modalRef.componentInstance.item = item;
     modalRef.componentInstance.editOrDelete = op;
     modalRef.componentInstance.editedItem.subscribe((x) => {
-      this.employeeService.updateDailyScrumItem(x).subscribe();
+      // this.employeeService.updateDailyScrumItem(x).subscribe();
+      this.store.dispatch({
+        type: employeeActions.EDIT_DAILY_SCRUM_ITEM,
+        payload: {
+          body: x
+        }
+      });
     });
     modalRef.componentInstance.deleteThisItem.subscribe((x) => {
-      this.employeeService.deleteDailyScrumItem(x).subscribe();
-      // this.getDailyScrumItems();
+      this.store.dispatch({
+        type: employeeActions.DELETE_DAILY_SCRUM_ITEM,
+        payload: {
+          id: x
+        }
+      });
     });
-  }
-  getDailyScrumItems() {
-    this.dailyScrumItems$ = this.employeeService.getDailyScrumList();
   }
 }

@@ -4,6 +4,10 @@ import { EmployeeService } from '../../services/employee.service';
 import { Observable, Subscription } from 'rxjs';
 import { IEmployee } from '../../models/employee.model';
 import { Router } from '@angular/router';
+import { Store, select } from '@ngrx/store';
+import { IAppState } from 'src/app/app.state';
+import * as employeeActions from '../../../store/employees/employee.actions';
+import { pluck } from 'rxjs/operators';
 
 @Component({
   selector: 'app-daily-scrum-add',
@@ -13,14 +17,15 @@ import { Router } from '@angular/router';
 export class DailyScrumAddComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   isNameOnEmployeeList = false;
-  employees: Observable<IEmployee[]>;
+  employees$: Observable<IEmployee[]>;
   date: Date = new Date();
   time = { hour: this.date.getHours(), minute: this.date.getMinutes() };
   subcription: Subscription;
 
   constructor(private fb: FormBuilder,
               private employeeService: EmployeeService,
-              private router: Router
+              private router: Router,
+              private store: Store<IAppState>
   ) {
     this.form = fb.group({
       name: [null, [Validators.required, Validators.minLength(8)]],
@@ -39,7 +44,10 @@ export class DailyScrumAddComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.employees = this.employeeService.getEmployees();
+    this.store.dispatch({
+      type: employeeActions.GET_EMPLOYEES
+    });
+    this.employees$ = this.store.pipe(select('employee'), pluck('employees'));
     this.setValue();
   }
   setValue() {
@@ -50,27 +58,29 @@ export class DailyScrumAddComponent implements OnInit, OnDestroy {
   checkName() {
     const name = this.form.get('name').value;
     if (name !== null && name.length > 7) {
-    this.subcription = this.employees.subscribe((item) => {
+    this.subcription = this.employees$.subscribe((item) => {
       item.map((user) => {
         if (user.name === name) {
-         this.isNameOnEmployeeList = true;
+          this.isNameOnEmployeeList = true;
         }
       });
     });
     }
-    this.isNameOnEmployeeList = false;
   }
   submit(form) {
-    const body = {
-      name: form.value.name,
-      time: form.value.arrivingTime,
-      onTime: form.value.employeeArrivedOnTime
-    };
-    this.employeeService.addNewEmployeeOnDailyScrumList(body).subscribe((item) => {
-      if (item) {
-        this.router.navigateByUrl('daily-scrum');
+    this.store.dispatch({
+      type: employeeActions.DAILY_SCRUM_ADD,
+      payload: {
+        body: {
+          name: form.value.name,
+          time: form.value.arrivingTime,
+          onTime: form.value.employeeArrivedOnTime
+        }
       }
     });
+    setTimeout(() => {
+      this.router.navigateByUrl('daily-scrum');
+    }, 1000);
   }
   ngOnDestroy() {
     if (this.subcription) {

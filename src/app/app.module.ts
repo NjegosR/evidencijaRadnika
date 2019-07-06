@@ -9,8 +9,8 @@ import { EditDeleteModalComponent } from './employee/components/edit-delete-moda
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-import { EmployeeEffects } from './store/employee.effects';
-import { employeeReducer } from './store/employee.reducers';
+import { EmployeeEffects } from './store/employees/employee.effects';
+import { employeeReducer } from './store/employees/employee.reducers';
 
 @NgModule({
   declarations: [

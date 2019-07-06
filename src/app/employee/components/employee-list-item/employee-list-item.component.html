@@ -1,5 +1,6 @@
 <ng-container *ngFor="let employee of employees">
     <table>
+
     <tr>
         <td *ngIf="employee.id === rowId"><input [ngStyle]="!editTable?{'border': 'none', 'background': 'none'} : {'visibility': 'visible'}" #input type="text" [(ngModel)]="employee.name"></td>
         <td *ngIf="employee.id !== rowId">{{employee.name}}</td>
