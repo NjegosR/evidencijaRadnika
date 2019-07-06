@@ -3,6 +3,10 @@
     {
       "name": "Njegos Rajcevic",
       "id": 2
+    },
+    {
+      "name": "Marko Markovic",
+      "id": 3
     }
   ],
   "daily-scrum": [
@@ -12,6 +16,16 @@
       "time": {
         "hour": 12,
         "minute": 45,
+        "second": 0
+      },
+      "onTime": "NE"
+    },
+    {
+      "id": 3,
+      "name": "Njegos Rajcevic",
+      "time": {
+        "hour": 23,
+        "minute": 40,
         "second": 0
       },
       "onTime": "NE"

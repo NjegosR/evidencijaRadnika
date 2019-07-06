@@ -37,7 +37,6 @@ export class DailyScrumComponent implements OnInit {
     modalRef.componentInstance.item = item;
     modalRef.componentInstance.editOrDelete = op;
     modalRef.componentInstance.editedItem.subscribe((x) => {
-      // this.employeeService.updateDailyScrumItem(x).subscribe();
       this.store.dispatch({
         type: employeeActions.EDIT_DAILY_SCRUM_ITEM,
         payload: {

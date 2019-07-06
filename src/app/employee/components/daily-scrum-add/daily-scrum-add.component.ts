@@ -78,9 +78,7 @@ export class DailyScrumAddComponent implements OnInit, OnDestroy {
         }
       }
     });
-    setTimeout(() => {
-      this.router.navigateByUrl('daily-scrum');
-    }, 1000);
+    this.router.navigateByUrl('daily-scrum');
   }
   ngOnDestroy() {
     if (this.subcription) {

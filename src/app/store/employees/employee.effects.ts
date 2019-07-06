@@ -16,19 +16,21 @@ import { of, forkJoin } from 'rxjs';
 export class EmployeeEffects {
     @Effect()
     getEmployees$ = this.actions$
-    .pipe(ofType(employeeActions.GET_EMPLOYEES, employeeActions.DELETE_EMPLOYEE_SUCCESS))
+    .pipe(ofType(employeeActions.GET_EMPLOYEES, employeeActions.DELETE_EMPLOYEE_SUCCESS, employeeActions.EDIT_EMPLOYEE_SUCCESS))
     .pipe(switchMap((action: employeeActions.GetEmployeesSuccess) => {
         return this.employeeService.getEmployees()
         .pipe(map((response) => new employeeActions.GetEmployeesSuccess(response)))
         .pipe(catchError((error) => of(new employeeActions.GetEmployeesFail(error))));
     }));
 
-    // @Effect()
-    // editEmployee$ = this.actions$
-    // .pipe(ofType(employeeActions.EDIT_EMPLOYEE))
-    // .pipe(flatMap((action: employeeActions.EditEmployeeSuccess) => [
-    //     { type: employeeActions.}
-    // ]));
+    @Effect()
+    editEmployee$ = this.actions$
+    .pipe(ofType(employeeActions.EDIT_EMPLOYEE))
+    .pipe(switchMap((action: employeeActions.EditEmployeeSuccess) => {
+        return this.employeeService.editEmployee(action.payload.id, action.payload.body)
+        .pipe(map((response) => new employeeActions.EditEmployeeSuccess(response)))
+        .pipe(catchError((error) => of(new employeeActions.EditEmployeeFail(error))));
+    }));
 
     @Effect()
     deleteEmployee$ = this.actions$
@@ -59,7 +61,7 @@ export class EmployeeEffects {
     @Effect()
     getDailyScrumItem$ = this.actions$
     // tslint:disable-next-line:max-line-length
-    .pipe(ofType(employeeActions.GET_DAILY_SCRUM_ITEM, employeeActions.DELETE_DAILY_SCRUM_ITEM_SUCCESS, employeeActions.EDIT_DAILY_SCRUM_ITEM_SUCCESS))
+    .pipe(ofType(employeeActions.GET_DAILY_SCRUM_ITEM, employeeActions.DELETE_DAILY_SCRUM_ITEM_SUCCESS, employeeActions.EDIT_DAILY_SCRUM_ITEM_SUCCESS, employeeActions.DAILY_SCRUM_ADD_SUCCESS))
     .pipe(switchMap((action: employeeActions.GetDailyScrumItemSuccess) => {
         return this.employeeService.getDailyScrumList()
         .pipe(map((response) => new employeeActions.GetDailyScrumItemSuccess(response)))

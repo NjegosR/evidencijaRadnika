@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
-import { Observable, from, Subscription } from 'rxjs';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Observable, from } from 'rxjs';
 import { IEmployee } from '../../models/employee.model';
 import { EmployeeService } from '../../services/employee.service';
 import { IButton } from '../../models/button.clicked';
@@ -14,12 +14,11 @@ import { pluck } from 'rxjs/operators';
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.scss']
 })
-export class EmployeeListComponent implements OnInit, OnDestroy {
+export class EmployeeListComponent implements OnInit {
   employees$: Observable<IEmployee[]>;
   deleteEmployee = false;
   buttonClicked: IButton;
   searchTerm: string;
-  subscription: Subscription;
 
   constructor(private employeesService: EmployeeService, private store: Store<IAppState>) { }
 
@@ -31,12 +30,14 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   }
   editEmpl(ev) {
     if (this.buttonClicked.type === 'Snimi') {
-      const body = {
+      const newBody = {
         name: this.buttonClicked.employee
       };
-      this.subscription = this.employeesService.editEmployee(ev.id, body).subscribe((item) => {
-        if (item) {
-          this.getEmployees();
+      this.store.dispatch({
+        type: employeeActions.EDIT_EMPLOYEE,
+        payload: {
+          id: ev.id,
+          body: newBody
         }
       });
     } else if (this.buttonClicked.type === 'obrisi' && ev.delete) {
@@ -55,10 +56,5 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     this.store.dispatch({
       type: employeeActions.GET_EMPLOYEES
     });
-  }
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
   }
 }
