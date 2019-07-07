@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgxSmartModalModule } from 'ngx-smart-modal';
-
-
 import { EmployeeRoutingModule } from './employee-routing.module';
 import { EmployeeListComponent } from './components/employee-list/employee-list.component';
 import { EmployeeListItemComponent } from './components/employee-list-item/employee-list-item.component';
@@ -33,7 +30,6 @@ import { EditDeleteModalComponent } from './components/edit-delete-modal/edit-de
     NgbModule,
     ReactiveFormsModule,
     FormsModule,
-    NgxSmartModalModule.forRoot(),
     NgbModule
   ],
   exports: [

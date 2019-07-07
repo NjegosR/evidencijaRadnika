@@ -33,4 +33,8 @@ export class EmployeeListItemComponent {
       this.editTable = false;
     }
   }
+  test(e) {
+    alert();
+    alert(e);
+  }
 }

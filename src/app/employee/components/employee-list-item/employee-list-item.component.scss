@@ -1,22 +1,24 @@
-tr{
-    width: 1000px;
-    cursor: pointer;
+tr {
+  width: 1000px;
+  cursor: pointer;
 }
 
 td {
-    text-align: left;
-    padding: 8px;
-  }
-  tr:hover{
-    background-color: lightgray;
+  text-align: left;
+  padding: 8px;
 }
+
+tr:hover {
+  background-color: lightgray;
+}
+
 table {
-    border-collapse: collapse;
-    width: 100%;
-    font-size: 120%;
-  }
-  .myInput{
-    border: 1px solid gray;
-    // display: none;
-    background-color: red;
-  }
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 120%;
+}
+
+.myInput {
+  border: 1px solid gray;
+  background-color: red;
+}

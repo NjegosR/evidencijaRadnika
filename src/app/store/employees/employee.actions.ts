@@ -23,7 +23,7 @@ export const EDIT_EMPLOYEE_FAIL = '[Employees] edit employee fail';
 
 export class EditEmployee implements Action {
     readonly type = EDIT_EMPLOYEE;
-    constructor(public payload?: any) { }
+    constructor(public payload?: any) {}
 }
 export class EditEmployeeSuccess implements Action {
     readonly type = EDIT_EMPLOYEE_SUCCESS;

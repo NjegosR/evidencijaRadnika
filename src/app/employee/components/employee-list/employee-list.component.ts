@@ -28,33 +28,24 @@ export class EmployeeListComponent implements OnInit {
     });
     this.employees$ = this.store.pipe(select('employee'), pluck('employees'));
   }
-  editEmpl(ev) {
-    if (this.buttonClicked.type === 'Snimi') {
-      const newBody = {
-        name: this.buttonClicked.employee
-      };
+  editOrDelete(event) {
+    if (event.type === 'Snimi') {
       this.store.dispatch({
         type: employeeActions.EDIT_EMPLOYEE,
         payload: {
-          id: ev.id,
-          body: newBody
+          id: event.id,
+          body: {
+            name: event.employee
+          }
         }
       });
-    } else if (this.buttonClicked.type === 'obrisi' && ev.delete) {
+    } else if (event.type === 'obrisi' && event.delete) {
       this.store.dispatch({
         type: employeeActions.DELETE_EMPLOYEE,
         payload: {
-          id: this.buttonClicked.id
+          id: event.id
         }
       });
     }
-  }
-  getEmployee(ev) {
-    this.buttonClicked = ev;
-  }
-  getEmployees() {
-    this.store.dispatch({
-      type: employeeActions.GET_EMPLOYEES
-    });
   }
 }

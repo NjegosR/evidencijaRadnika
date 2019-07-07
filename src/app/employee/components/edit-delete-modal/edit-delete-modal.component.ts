@@ -11,8 +11,11 @@ import { IDailyScrum } from '../../models/daily-scrum.model';
 export class EditDeleteModalComponent {
   @Input() item: IDailyScrum;
   @Input() editOrDelete: string;
+  @Input() deleteEmployee: boolean;
+  @Input() employeeId: number;
   @Output() editedItem = new EventEmitter<IDailyScrum>();
   @Output() deleteThisItem = new EventEmitter<number>();
+  @Output() deleteEmployeeConfirmation = new EventEmitter<boolean>();
 
   constructor(public activeModal: NgbActiveModal) { }
   submit(Id, op) {

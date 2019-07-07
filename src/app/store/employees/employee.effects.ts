@@ -16,7 +16,7 @@ import { of, forkJoin } from 'rxjs';
 export class EmployeeEffects {
     @Effect()
     getEmployees$ = this.actions$
-    .pipe(ofType(employeeActions.GET_EMPLOYEES, employeeActions.DELETE_EMPLOYEE_SUCCESS, employeeActions.EDIT_EMPLOYEE_SUCCESS))
+    .pipe(ofType(employeeActions.GET_EMPLOYEES, employeeActions.DELETE_EMPLOYEE_SUCCESS))
     .pipe(switchMap((action: employeeActions.GetEmployeesSuccess) => {
         return this.employeeService.getEmployees()
         .pipe(map((response) => new employeeActions.GetEmployeesSuccess(response)))

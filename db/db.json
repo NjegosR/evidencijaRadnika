@@ -19,16 +19,6 @@
         "second": 0
       },
       "onTime": "NE"
-    },
-    {
-      "id": 3,
-      "name": "Njegos Rajcevic",
-      "time": {
-        "hour": 23,
-        "minute": 40,
-        "second": 0
-      },
-      "onTime": "NE"
     }
   ]
 }

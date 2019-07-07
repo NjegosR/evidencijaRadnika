@@ -28,6 +28,11 @@
             <button class="btn btn-danger float-right" (click)="submit(item.id, 'delete')">Da</button>
             <button class="btn btn-primary" (click)="activeModal.close()">Ne</button>
           </form>
+          <form *ngIf="deleteEmployee">
+            <h4>Da li zelite da izbrisete ovog radnika?</h4>
+            <button class="btn btn-danger float-right" (click)="deleteEmployeeConfirmation.emit({id: employeeId, delete: true, type: 'obrisi'})">Da</button>
+            <button class="btn btn-primary" (click)="activeModal.close()">Ne</button>
+          </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Zatvori</button>
