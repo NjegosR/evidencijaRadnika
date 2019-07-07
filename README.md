@@ -14,6 +14,7 @@ This project was generated with Angular CLI: 8.1.0. I used json-server for simul
 > npm install
 
 ### To run json-server you have to navigate on db folder inside project and than run following command
+> npm install -g json-server
 > json-server db.json
 
 ### Start server
