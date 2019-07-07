@@ -1,15 +1,26 @@
 .row {
-    width: 95%;
-    margin: auto;
-    height: auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    input {
-      border-radius: 20px;
-      width: 93%;
-    }
+  width: 95%;
+  margin: auto;
+  height: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  input {
+    border-radius: 20px;
+    width: 93%;
   }
+}
+.btn {
+  width: 90px;
+  position: absolute;
+  right: 68px;
+}
   
   i {
     margin: 5px;
+  }
+  .box {
+    border: 1px solid black;
+    width: 95%;
+    margin: auto;
+    height: 83vh;
   }

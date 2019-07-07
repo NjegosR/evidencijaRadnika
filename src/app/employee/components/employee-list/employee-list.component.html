@@ -8,4 +8,4 @@
         <app-employee-list-item [employees]="(employees$ | async) | search:searchTerm" (deleteEmpl)="editOrDelete($event)" (btnClicked)="editOrDelete($event)"></app-employee-list-item>
                 
       </div>
-        <p class="numOfEmployees">Ukupno zaposlenih: {{(employees$ | async)?.length}}</p>
+        <p class="numOfEmployees">Ukupno zaposlenih: {{((employees$ | async) | search:searchTerm)?.length}}</p>
